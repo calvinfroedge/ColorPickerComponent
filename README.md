@@ -4,7 +4,7 @@ A framework agnostic color picker component. Based on ColorJoe (https://github.c
 
 Can be attached to any DOM element, and can be easily be hooked up to notify models of changes.
 
-![alt tag](https://github.com/calvinfroedge/ColorPickerComponent/blob/master/picker.gif)
+<!-- ![alt tag](https://github.com/calvinfroedge/ColorPickerComponent/blob/master/picker.gif)-->
 
 Usage example: 
 
