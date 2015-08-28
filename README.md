@@ -2,7 +2,9 @@
 
 A framework agnostic color picker component. Based on ColorJoe (https://github.com/bebraw/colorjoe) as underlying color picker, with some extra controls and an added event API. 
 
-Can be attached to any DOM element, and can be easily be hooked up to notify models of changes. 
+Can be attached to any DOM element, and can be easily be hooked up to notify models of changes.
+
+![alt tag](https://github.com/calvinfroedge/ColorPickerComponent/blob/master/picker.gif)
 
 Usage example: 
 
@@ -20,6 +22,31 @@ requirejs.config({
 define(["main", "css!./bower_components/colorjoe/css/colorjoe"], function(ColorPicker) {
   new ColorPicker({attachTo: $('#container')});
 });
+```
+
+Without RequireJS:
+
+```
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Basic example of color-picker</title>
+  <script src="bower_components/color/one-color-all.js"></script>
+  <script src="bower_components/colorjoe/js/scale.fix.js"></script>
+  <script src="bower_components/colorjoe/dist/colorjoe.min.js"></script>
+  <link href="bower_components/colorjoe/css/colorjoe.css" type="text/css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+  <script src="main.js"></script>
+</head>
+<body>
+<div id="container">
+</div>
+<script>
+  new window.ColorPickerComponent({attachTo: document.getElementById('container')});
+</script>
+</body>
+</html>
 ```
 
 Options:
