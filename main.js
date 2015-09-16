@@ -16,7 +16,6 @@
 (function (module) {
     if (typeof define === "function" && define.amd) {
         define(['jquery', 'colorjoe', 'onecolor', 'scale.fix'], function ($, colorjoe) { 
-          console.log('colorjoe is', colorjoe);
           return module.component($, colorjoe); 
         });
     } else {
@@ -26,6 +25,9 @@
   component: function($, colorjoe){
 
     return function(options){
+      //We need to give the picker an instance id, since colorjoe extras are a singleton...
+      var instanceId = Math.floor(Math.random() * 1000000);
+
       // Set options if not given
       if(!options) options = {}
 
@@ -91,31 +93,29 @@
        * Extra Controls
        */
       var registerControls = function(){
-        if(!colorjoe._extras['controls']) colorjoe.registerExtra('controls', function(extras, joe) {
-          var controls = el('div');
-          controls.className = 'color-picker-controls';
+        if(!colorjoe._extras[instanceId]) colorjoe.registerExtra(instanceId, function(extras, joe) {
+          var controls = $('<div class="color-picker-controls">');
 
-          var done = a('Done', 'color-picker-done');
-          $(done).click(function(e){
+          var done = $('<a href="#" class="color-picker-done">Done</div>');
+          done.click(function(e){
             e.preventDefault();
             $(els.launcher).css('background-color', vars.color);
             if(options.onChange) options.onChange(vars.color);
             closePicker();
           });
 
-          var revert = a('Revert to Default', 'color-picker-revert');
-          $(revert).click(function(e){
+          var revert = $('<a href="#" class="color-picker-revert">Revert to Default</div>');
+          revert.click(function(e){
             e.preventDefault();
-            console.log('default', options.defaultColor);
             $(els.launcher).css('background-color', options.defaultColor);
             vars.color = options.defaultColor;
             showPicker();
           });
 
-          controls.appendChild(revert);
-          controls.appendChild(done);
+          controls.append(revert);
+          controls.append(done);
 
-          if(joe) joe.e.appendChild(controls);
+          if(joe) $(joe.e).append(controls);
         });
       }
 
@@ -173,8 +173,9 @@
         $joe.css('z-index', maxZ+1);
 
         //Vertical positioning
-        var postHeight = $(document).height();     
-        if(postHeight > preHeight){
+        var postHeight = $(document).height();
+        var hangsOver = ($joe.height() + $joe.offset().top) > postHeight;
+        if(postHeight > preHeight || hangsOver){
           $joe.css('bottom', '0px');
 
           var y = $joe.offset().top;
@@ -230,7 +231,7 @@
           ['fields', {space: 'RGB', limit: 100}],
           ['fields', {space: 'CMYKA', limit: 100}],
           'hex',
-          'controls'
+          instanceId
         ])
         .on('change', function(c) {
           $(els.launcher).css({'background-color': c.hex()});
@@ -303,7 +304,7 @@
         }
       };
 
-      return ColorPicker(options);
+      return new ColorPicker();
     }
   }
 }));

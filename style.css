@@ -1,0 +1,92 @@
+.color-picker-launch {
+  border: 1px solid #333;
+  border-radius: 50%;
+}
+
+.twod, .oned, .extras {
+  margin-top: 3.5em !important;
+}
+
+.colorPicker {
+  background:#fff !important;
+  min-width:400px !important;
+  text-transform: uppercase;
+  font-family: Museo Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.colorPicker .extras {
+  color: #333 !important;
+}
+
+.colorPicker .extras select {
+  background: #ccc;
+  height: 3em;
+}
+
+.colorPicker .extras input {
+  border-radius:10px;
+  padding: 0.5em 0;
+  margin-left: 0.5em;
+  border:1px solid #ccc;
+  font-size: 1em;
+  text-align:center;
+  margin-bottom:0.5em;
+}
+
+.colorPicker .hex {
+  margin-top: 0.5em;
+}
+
+.color-picker-controls {
+  clear: both;
+  bottom:0;
+  padding-top:1.5em;
+  margin:0 0.5em 0.5em 0.5em !important;
+  overflow:auto;
+}
+
+.color-picker-controls a {
+  text-decoration:none;
+  color:rgb(202,103,63);
+  border:1px solid rgb(202,103,63);
+  border-radius: 5px;
+  padding: 0.25em 0.5em;
+  display: inline-block;
+}
+
+.color-picker-done {
+  float:right;
+}
+
+.color-picker-done:after {
+  content: "\2713 ";
+  padding-left: 0.5em;
+}
+
+.colorPicker .oned {
+  width: 40px !important;
+}
+
+.colorPicker .oned .bg {
+  width: 40px !important;
+}
+
+.colorPicker .oned .shape {
+  border-color:#fff !important;
+  border-radius:0px !important;
+  background:#fff;
+  width: 40px !important;
+}
+
+.currentColorContainer {
+  position:absolute;
+  top:0.5em;
+  left:0.5em;
+  right: 0.5em;
+}
+
+.currentColorContainer .currentColor {
+  height: 2em !important;
+  float:none !important;
+  width:99.5% !important;
+}
